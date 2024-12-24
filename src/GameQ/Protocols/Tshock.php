@@ -129,13 +129,15 @@ class Tshock extends Http
         $result->add('maxplayers', $json->maxplayers);
 
         // Parse players
-        foreach ($json->players as $player) {
-            $result->addPlayer('nickname', $player->nickname);
-            $result->addPlayer('username', $player->username);
-            $result->addPlayer('group', $player->group);
-            $result->addPlayer('active', (int)$player->active);
-            $result->addPlayer('state', $player->state);
-            $result->addPlayer('team', $player->team);
+        if (isset($json->players)) {
+            foreach ($json->players as $player) {
+                $result->addPlayer('nickname', $player->nickname);
+                $result->addPlayer('username', $player->username);
+                $result->addPlayer('group', $player->group);
+                $result->addPlayer('active', (int)$player->active);
+                $result->addPlayer('state', $player->state);
+                $result->addPlayer('team', $player->team);
+            }
         }
 
         // Make rules into simple array
