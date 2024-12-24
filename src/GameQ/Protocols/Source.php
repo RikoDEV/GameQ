@@ -50,6 +50,7 @@ class Source extends Protocol
         self::PACKET_DETAILS   => "\xFF\xFF\xFF\xFFTSource Engine Query\x00%s",
         self::PACKET_PLAYERS   => "\xFF\xFF\xFF\xFF\x55%s",
         self::PACKET_RULES     => "\xFF\xFF\xFF\xFF\x56%s",
+        'details_old' => "\xFF\xFF\xFF\xFFTSource Engine Query\x00",
     ];
 
     /**
@@ -62,6 +63,7 @@ class Source extends Protocol
         "\x6d" => "processDetailsGoldSource", // m, goldsource
         "\x44" => "processPlayers", // D
         "\x45" => "processRules", // E
+        "\x41" => "processChallenge", // A
     ];
 
     /**
@@ -443,6 +445,11 @@ class Source extends Protocol
         unset($buffer);
 
         return $result->fetch();
+    }
+
+    protected function processChallenge(Buffer $buffer)
+    {
+        return [];
     }
 
     /**
